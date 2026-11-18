@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f4">
+    <title>Campus Events — Make your campus yours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Campus Events home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>campus<span class="brand-light">events</span></span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#discover">Discover</a>
+        <a class="nav-link" href="#about">About</a>
+      </nav>
+      <button class="button button-dark header-create" id="create-event-button" type="button">
+        <span aria-hidden="true">+</span> Create event
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> YOUR CAMPUS, YOUR CALENDAR</div>
+          <h1>Make your<br>campus <span>yours.</span></h1>
+          <p>Find your people, try something new, and make the most of every day on campus.</p>
+          <a class="hero-cta" href="#discover">Explore what's happening <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-sun"></div>
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-star star-one">✳</div>
+          <div class="art-star star-two">✦</div>
+          <div class="art-card card-back"><span>MAKE</span><span>MEMORIES</span><i>↗</i></div>
+          <div class="art-card card-front">
+            <span class="card-date">THU · 6:30 PM</span>
+            <strong>Good things<br>happen here.</strong>
+            <span class="card-place">✳ &nbsp;ON CAMPUS</span>
+          </div>
+          <div class="art-label">A little more<br>life between lectures.</div>
+        </div>
+        <div class="hero-bottom">
+          <span>DISCOVER. CONNECT. SHOW UP.</span>
+          <span>SCROLL TO EXPLORE&nbsp; ↓</span>
+        </div>
+      </section>
+
+      <section class="discover" id="discover">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow section-eyebrow"><span class="live-dot"></span> THE GOOD STUFF</div>
+            <h2>Find your <span>next thing.</span></h2>
+          </div>
+          <div class="event-total" id="event-total" aria-live="polite"></div>
+        </div>
+
+        <div class="toolbar">
+          <div class="filters" id="category-filters" aria-label="Filter by category">
+            <button class="filter-chip selected" data-category="All" type="button">Everything</button>
+            <button class="filter-chip" data-category="Academic" type="button">Academic</button>
+            <button class="filter-chip" data-category="Arts" type="button">Arts</button>
+            <button class="filter-chip" data-category="Career" type="button">Career</button>
+            <button class="filter-chip" data-category="Community" type="button">Community</button>
+            <button class="filter-chip" data-category="Sports" type="button">Sports</button>
+            <button class="filter-chip" data-category="Tech" type="button">Tech</button>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <span class="visually-hidden">Search events</span>
+            <input id="event-search" type="search" placeholder="Search events..." autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+        </div>
+
+        <div class="events-grid" id="events-grid" aria-live="polite"></div>
+        <div class="load-error" id="load-error" role="alert" hidden></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">✳</span><span>campus<span class="brand-light">events</span></span></a>
+      <span>Good days start with showing up.</span>
+      <a href="#discover">Back to the good stuff ↑</a>
+    </footer>
+
+    <dialog class="event-dialog" id="event-dialog" aria-labelledby="dialog-title">
+      <form class="event-form" id="event-form">
+        <div class="dialog-heading">
+          <div>
+            <div class="eyebrow section-eyebrow">MAKE IT HAPPEN</div>
+            <h2 id="dialog-title">Create an event</h2>
+          </div>
+          <button class="icon-button" id="close-dialog" type="button" aria-label="Close dialog">×</button>
+        </div>
+        <label>Event name<input name="title" maxlength="100" placeholder="e.g. Rooftop movie night" required></label>
+        <label>What's the plan?<textarea name="description" rows="3" maxlength="1000" placeholder="Give people a reason to show up..." required></textarea></label>
+        <div class="form-row">
+          <label>Category<select name="category" required>
+            <option value="Academic">Academic</option><option value="Arts">Arts</option>
+            <option value="Career">Career</option><option value="Community">Community</option>
+            <option value="Sports">Sports</option><option value="Tech">Tech</option>
+          </select></label>
+          <label>When<input name="start_at" type="datetime-local" required></label>
+        </div>
+        <div class="form-row">
+          <label>Where<input name="location" maxlength="120" placeholder="Building or space" required></label>
+          <label>Spots<input name="capacity" type="number" min="1" max="100000" value="40" required></label>
+        </div>
+        <label>Hosted by<input name="organizer" maxlength="100" placeholder="Club or organizer" required></label>
+        <div class="form-error" id="form-error" role="alert" hidden></div>
+        <button class="button button-dark submit-event" type="submit">Add to the calendar <span aria-hidden="true">↗</span></button>
+      </form>
+    </dialog>
+  </body>
+</html>

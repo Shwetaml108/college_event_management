@@ -1,0 +1,12 @@
+services:
+  campus-events:
+    build: .
+    container_name: campus-events-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - campus-events-data:/data
+    restart: unless-stopped
+
+volumes:
+  campus-events-data:
